@@ -16,15 +16,15 @@ def analyze_code(code):
         for word in words:
             token = {
                 'token': word,
-                'line': i,
-                'reserved': 'x' if word in reserved_words else '',
-                'symbol': 'x' if word in symbols else '',
-                'left_paren': 'x' if word == '(' else '',
-                'right_paren': 'x' if word == ')' else '',
-                'left_brace': 'x' if word == '{' else '',
-                'right_brace': 'x' if word == '}' else '',
-                'number': 'x' if word.isdigit() else '',
-                'identifier': 'x' if word not in reserved_words and word not in symbols and not word.isdigit() else ''
+                'linea': i,
+                'reservada': 'x' if word in reserved_words else '',
+                'simbolo': 'x' if word in symbols else '',
+                'parentesis_izquierdo': 'x' if word == '(' else '',
+                'parentesis_derecho': 'x' if word == ')' else '',
+                'llave_izquierda': 'x' if word == '{' else '',
+                'llave_derecha': 'x' if word == '}' else '',
+                'numero': 'x' if word.isdigit() else '',
+                'identificador': 'x' if word not in reserved_words and word not in symbols and not word.isdigit() else ''
             }
             tokens.append(token)
 

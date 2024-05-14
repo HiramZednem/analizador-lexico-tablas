@@ -2,43 +2,6 @@
 <html>
 <head>
     <title>Analizador Léxico</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            text-align: center;
-        }
-        form {
-            margin: 20px auto;
-            text-align: center;
-        }
-        textarea {
-            width: 80%;
-            padding: 10px;
-            font-size: 16px;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-        #result {
-            margin: 20px auto;
-            width: 80%;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 <body>
     <h1>Analizador Léxico</h1>
@@ -47,36 +10,48 @@
         <input type="submit" value="Generar Análisis">
     </form>
 
-    <div id="result" style="display: {{ 'block' if tokens else 'none' }}">
+    <div id="result" style="display: block if tokens else none">
         <h2>Resultado del Análisis</h2>
         <table border="1">
             <thead>
                 <tr>
                     <th>Token</th>
-                    <th>Línea</th>
-                    <th>Palabra reservada</th>
+                    <th>PR</th>
+                    <th>Identificador</th>
+                    <th>Número</th>
                     <th>Símbolo</th>
-                    <th>Paréntesis izquierdo</th>
+                    <th>Tipo</th>
+                    <!-- <th>Paréntesis izquierdo</th>
                     <th>Paréntesis derecho</th>
                     <th>Llave izquierda</th>
-                    <th>Llave derecha</th>
-                    <th>Número</th>
-                    <th>Identificador</th>
+                    <th>Llave derecha</th> -->
                 </tr>
             </thead>
             <tbody>
                 {% for token in tokens %}
                 <tr>
-                    <td>{{ token.token }}</td>
-                    <td>{{ token.line }}</td>
-                    <td>{{ token.reserved }}</td>
-                    <td>{{ token.symbol }}</td>
-                    <td>{{ token.left_paren }}</td>
-                    <td>{{ token.right_paren }}</td>
-                    <td>{{ token.left_brace }}</td>
-                    <td>{{ token.right_brace }}</td>
-                    <td>{{ token.number }}</td>
-                    <td>{{ token.identifier }}</td>
+                    <td>{{ token['token'] }}</td>
+                    <td>{{ token['reservada'] }}</td>
+                    <td>{{ token['identificador'] }}</td>
+                    <td>{{ token['numero'] }}</td>
+                    <td>{{ token['simbolo'] }}</td>
+
+                    {% if token['parentesis_izquierdo'] %}
+                    <td>parentesis izquierdo</td>
+                    {% endif %}
+
+                    {% if token['parentesis_derecho'] %}
+                    <td>parentesis derecho</td>
+                    {% endif %}
+
+                    {% if token['llave_izquierda'] %}
+                    <td>llave izquierda</td>
+                    {% endif %}
+
+                    {% if token['llave_derecha'] %}
+                    <td>llave derecha</td>
+                    {% endif %}
+                    
                 </tr>
                 {% endfor %}
             </tbody>
